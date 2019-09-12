@@ -3,6 +3,8 @@
 namespace App\Crontab;
 
 use App\Model\Entity\User;
+use App\Services\RedPacketReportService;
+use Swoft\Bean\Annotation\Mapping\Inject;
 use Swoft\Crontab\Annotaion\Mapping\Cron;
 use Swoft\Crontab\Annotaion\Mapping\Scheduled;
 use Swoft\Log\Helper\CLog;
@@ -17,30 +19,20 @@ use Swoft\Stdlib\Helper\JsonHelper;
  */
 class CronTask
 {
-    /**
-     * @Cron("* * * * * *")
-     */
-    public function secondTask()
-    {
-        $user = new User();
-        $user->setAge(mt_rand(1, 100));
-        $user->setUserDesc('desc');
-
-        $user->save();
-
-        $id   = $user->getId();
-        $user = User::find($id)->toArray();
-
-        CLog::info("second task run: %s ", date('Y-m-d H:i:s', time()));
-        CLog::info(JsonHelper::encode($user));
-    }
 
     /**
-     * @Cron("0 * * * * *")
+     * @Inject()
+     * @var RedPacketReportService
      */
-    public function minuteTask()
-    {
-        CLog::info("minute task run: %s ", date('Y-m-d H:i:s', time()));
-    }
+    private $RedPacketReportService;
+
+    /**
+     * @Cron("0/10 * * * * *")
+     */
+//    public function redPacketReportTask(){
+//        $time = strtotime("-1day");
+//        xe_debug($time);
+//        $this->RedPacketReportService->syncRedPacketReport($time);
+//    }
 
 }

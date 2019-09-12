@@ -31,7 +31,7 @@ return [
         ],
         'process'  => [
 //            'monitor' => bean(MonitorProcess::class)
-//            'crontab' => bean(CrontabProcess::class)
+            'crontab' => bean(CrontabProcess::class)//定时器配置
         ],
         'on'       => [
 //            SwooleEvent::TASK   => bean(SyncTaskListener::class),  // Enable sync task
@@ -58,7 +58,7 @@ return [
     ],
     'db'                => [
         'class'    => Database::class,
-        'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
+        'dsn'      => 'mysql:dbname=test;host=120.79.68.172',
         'username' => 'root',
         'password' => 'root',
     ],
