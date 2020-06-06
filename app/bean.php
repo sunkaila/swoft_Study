@@ -58,7 +58,7 @@ return [
     ],
     'db'                => [
         'class'    => Database::class,
-        'dsn'      => 'mysql:dbname=test;host=120.79.68.172',
+        'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
         'username' => 'root',
         'password' => 'root',
     ],
